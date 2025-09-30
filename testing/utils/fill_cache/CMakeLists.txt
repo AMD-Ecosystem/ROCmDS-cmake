@@ -65,12 +65,17 @@ if(NOT CUDA_BACKEND)
 include(${rapids-cmake-dir}/cpm/hipmm.cmake)
 else()
 include(${rapids-cmake-dir}/cpm/rmm.cmake)
-# <<<<<<< OLD CODE from 771ee34 (bddb835) - COMMENTED OUT
-# endif()
-# include(${rapids-cmake-dir}/cpm/spdlog.cmake)
-# include(${rapids-cmake-dir}/cpm/fmt.cmake)
+# <<<<<<< OLD CODE from c6e92cf (7d466de) - COMMENTED OUT
+# # <<<<<<< OLD CODE from 771ee34 (bddb835) - COMMENTED OUT
+# # endif()
+# # include(${rapids-cmake-dir}/cpm/spdlog.cmake)
+# # include(${rapids-cmake-dir}/cpm/fmt.cmake)
+# # =======
+# # >>>>>>> END NEW CODE (bddb835)
 # =======
-# >>>>>>> END NEW CODE (bddb835)
+include(${rapids-cmake-dir}/cpm/spdlog.cmake)
+include(${rapids-cmake-dir}/cpm/fmt.cmake)
+# >>>>>>> END NEW CODE (7d466de)
 
 rapids_cpm_init(GENERATE_PINNED_VERSIONS)
 
@@ -98,12 +103,17 @@ if(NOT CUDA_BACKEND)
 rapids_cpm_hipmm(DOWNLOAD_ONLY ON)
 else()
 rapids_cpm_rmm(DOWNLOAD_ONLY ON)
-# <<<<<<< OLD CODE from 771ee34 (bddb835) - COMMENTED OUT
-# endif()
-# rapids_cpm_spdlog(DOWNLOAD_ONLY ON)
-# rapids_cpm_fmt(DOWNLOAD_ONLY ON)
+# <<<<<<< OLD CODE from c6e92cf (7d466de) - COMMENTED OUT
+# # <<<<<<< OLD CODE from 771ee34 (bddb835) - COMMENTED OUT
+# # endif()
+# # rapids_cpm_spdlog(DOWNLOAD_ONLY ON)
+# # rapids_cpm_fmt(DOWNLOAD_ONLY ON)
+# # =======
+# # >>>>>>> END NEW CODE (bddb835)
 # =======
-# >>>>>>> END NEW CODE (bddb835)
+rapids_cpm_spdlog(DOWNLOAD_ONLY ON)
+rapids_cpm_fmt(DOWNLOAD_ONLY ON)
+# >>>>>>> END NEW CODE (7d466de)
 
 # Download all binary packages
 set(CPM_DOWNLOAD_ALL "OFF")
