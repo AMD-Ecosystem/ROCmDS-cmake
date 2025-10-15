@@ -22,8 +22,12 @@
       "version": "3.1.0",
       "git_shallow": false,
       "git_url": "https://github.com/NVIDIA/cccl.git",
-      "git_tag": "db5c31a90375df0ae68be7adad72fc4b1a355fc1"
-# >>>>>>> END NEW CODE (dd8a454)
+# <<<<<<< OLD CODE from 099a8c7 (7e5e359) - COMMENTED OUT
+#       "git_tag": "db5c31a90375df0ae68be7adad72fc4b1a355fc1"
+# # >>>>>>> END NEW CODE (dd8a454)
+# =======
+      "git_tag": "ecfd3adfaa7ebcb81d80d5b297ab3551619fda02"
+# >>>>>>> END NEW CODE (7e5e359)
     },
     "cuco": {
       "version": "0.0.1",
