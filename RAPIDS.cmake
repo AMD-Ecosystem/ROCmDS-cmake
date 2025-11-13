@@ -54,20 +54,25 @@ endif()
 
 # Allow users to control which branch is fetched
 if(NOT rapids-cmake-branch)
-  if(DEFINED ENV{RAPIDS_CMAKE_BRANCH})
-    set(rapids-cmake-branch $ENV{RAPIDS_CMAKE_BRANCH})
-  else()
-    # Define a default branch if the user doesn't set one
-    set(rapids-cmake-branch "release/rocmds-26.03")
-  endif()
-endif()
-
-if(NOT rapids-cmake-tag AND DEFINED ENV{RAPIDS_CMAKE_TAG})
-  set(rapids-cmake-tag $ENV{RAPIDS_CMAKE_TAG})
-endif()
-
-if(NOT rapids-cmake-sha AND DEFINED ENV{RAPIDS_CMAKE_SHA})
-  set(rapids-cmake-sha $ENV{RAPIDS_CMAKE_SHA})
+# <<<<<<< OLD CODE from 6b9c3a0 (11c5bc7) - COMMENTED OUT
+#   if(DEFINED ENV{RAPIDS_CMAKE_BRANCH})
+#     set(rapids-cmake-branch $ENV{RAPIDS_CMAKE_BRANCH})
+#   else()
+#     # Define a default branch if the user doesn't set one
+#     set(rapids-cmake-branch "release/rocmds-26.03")
+#   endif()
+# endif()
+#
+# if(NOT rapids-cmake-tag AND DEFINED ENV{RAPIDS_CMAKE_TAG})
+#   set(rapids-cmake-tag $ENV{RAPIDS_CMAKE_TAG})
+# endif()
+#
+# if(NOT rapids-cmake-sha AND DEFINED ENV{RAPIDS_CMAKE_SHA})
+#   set(rapids-cmake-sha $ENV{RAPIDS_CMAKE_SHA})
+# =======
+  # Define a default branch if the user doesn't set one
+  set(rapids-cmake-branch "main")
+# >>>>>>> END NEW CODE (11c5bc7)
 endif()
 
 # Allow users to control the exact URL passed to FetchContent

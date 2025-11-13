@@ -1,29 +1,33 @@
-<!-- MIT License
-  --
-  -- Modifications Copyright (c) 2024 Advanced Micro Devices, Inc.
-  --
-  -- Permission is hereby granted, free of charge, to any person obtaining a copy
-  -- of this software and associated documentation files (the "Software"), to deal
-  -- in the Software without restriction, including without limitation the rights
-  -- to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-  -- copies of the Software, and to permit persons to whom the Software is
-  -- furnished to do so, subject to the following conditions:
-  --
-  -- The above copyright notice and this permission notice shall be included in all
-  -- copies or substantial portions of the Software.
-  --
-  -- THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-  -- IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-  -- FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-  -- AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-  -- LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-  -- OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-  -- SOFTWARE.
--->
-
-# ROCm-DS CMake
-
-<!-- **NOTE:** For the latest stable [README.md](https://github.com/ROCm-DS/ROCmDS-cmake/blob/release/1.0.x/README.md) ensure you are on the default branch. -->
+# <<<<<<< OLD CODE from 6b9c3a0 (11c5bc7) - COMMENTED OUT
+# <!-- MIT License
+#   --
+#   -- Modifications Copyright (c) 2024 Advanced Micro Devices, Inc.
+#   --
+#   -- Permission is hereby granted, free of charge, to any person obtaining a copy
+#   -- of this software and associated documentation files (the "Software"), to deal
+#   -- in the Software without restriction, including without limitation the rights
+#   -- to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+#   -- copies of the Software, and to permit persons to whom the Software is
+#   -- furnished to do so, subject to the following conditions:
+#   --
+#   -- The above copyright notice and this permission notice shall be included in all
+#   -- copies or substantial portions of the Software.
+#   --
+#   -- THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+#   -- IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+#   -- FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+#   -- AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+#   -- LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+#   -- OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+#   -- SOFTWARE.
+# -->
+#
+# # ROCm-DS CMake
+#
+# <!-- **NOTE:** For the latest stable [README.md](https://github.com/ROCm-DS/ROCmDS-cmake/blob/release/1.0.x/README.md) ensure you are on the default branch. -->
+# =======
+# <div align="left"><img src="https://rapids.ai/assets/images/rapids_logo.png" width="90px"/>&nbsp;rapids-cmake</div>
+# >>>>>>> END NEW CODE (11c5bc7)
 
 ## Overview
 
@@ -45,7 +49,11 @@ Content](https://cmake.org/cmake/help/latest/module/FetchContent.html) into your
 cmake_minimum_required(...)
 
 if(NOT EXISTS ${CMAKE_CURRENT_BINARY_DIR}/<PROJECT>_RAPIDS.cmake)
-  file(DOWNLOAD https://raw.githubusercontent.com/ROCm-DS/ROCmDS-CMake/release/<VERSION_MAJOR>.<VERSION_MINOR>.x/RAPIDS.cmake
+# <<<<<<< OLD CODE from 6b9c3a0 (11c5bc7) - COMMENTED OUT
+#   file(DOWNLOAD https://raw.githubusercontent.com/ROCm-DS/ROCmDS-CMake/release/<VERSION_MAJOR>.<VERSION_MINOR>.x/RAPIDS.cmake
+# =======
+  file(DOWNLOAD https://raw.githubusercontent.com/rapidsai/rapids-cmake/main/RAPIDS.cmake
+# >>>>>>> END NEW CODE (11c5bc7)
     ${CMAKE_CURRENT_BINARY_DIR}/<PROJECT>_RAPIDS.cmake)
 endif()
 include(${CMAKE_CURRENT_BINARY_DIR}/<PROJECT>_RAPIDS.cmake)
@@ -199,7 +207,7 @@ At times projects or developers will need to verify ``rapids-cmake`` branches. T
   # This only works when specifying
   #
   # set(rapids-cmake-fetch-via-git "ON")
-  # set(rapids-cmake-branch "branch-<cal_ver>")
+  # set(rapids-cmake-branch "release/<cal_ver>")
   #
   # or
   # set(rapids-cmake-fetch-via-git "ON")

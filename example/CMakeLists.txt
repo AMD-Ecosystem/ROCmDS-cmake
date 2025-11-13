@@ -39,7 +39,11 @@
 cmake_minimum_required(VERSION 3.30.4 FATAL_ERROR)
 
 if(NOT EXISTS ${CMAKE_CURRENT_BINARY_DIR}/EXAMPLE_RAPIDS.cmake)
-  file(DOWNLOAD https://raw.githubusercontent.com/ROCm/rapids-cmake/branch-24.06/RAPIDS.cmake
+# <<<<<<< OLD CODE from 6b9c3a0 (11c5bc7) - COMMENTED OUT
+#   file(DOWNLOAD https://raw.githubusercontent.com/ROCm/rapids-cmake/branch-24.06/RAPIDS.cmake
+# =======
+  file(DOWNLOAD https://raw.githubusercontent.com/rapidsai/rapids-cmake/main/RAPIDS.cmake
+# >>>>>>> END NEW CODE (11c5bc7)
        ${CMAKE_CURRENT_BINARY_DIR}/EXAMPLE_RAPIDS.cmake)
 endif()
 include(${CMAKE_CURRENT_BINARY_DIR}/EXAMPLE_RAPIDS.cmake)
