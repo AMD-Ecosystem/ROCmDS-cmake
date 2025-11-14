@@ -71,8 +71,12 @@ if(NOT rapids-cmake-branch)
 #   set(rapids-cmake-sha $ENV{RAPIDS_CMAKE_SHA})
 # =======
   # Define a default branch if the user doesn't set one
-  set(rapids-cmake-branch "main")
-# >>>>>>> END NEW CODE (11c5bc7)
+# <<<<<<< OLD CODE from a736159 (734c43d) - COMMENTED OUT
+#   set(rapids-cmake-branch "main")
+# # >>>>>>> END NEW CODE (11c5bc7)
+# =======
+  set(rapids-cmake-branch "release/${rapids-cmake-version}")
+# >>>>>>> END NEW CODE (734c43d)
 endif()
 
 # Allow users to control the exact URL passed to FetchContent

@@ -49,11 +49,15 @@ Content](https://cmake.org/cmake/help/latest/module/FetchContent.html) into your
 cmake_minimum_required(...)
 
 if(NOT EXISTS ${CMAKE_CURRENT_BINARY_DIR}/<PROJECT>_RAPIDS.cmake)
-# <<<<<<< OLD CODE from 6b9c3a0 (11c5bc7) - COMMENTED OUT
-#   file(DOWNLOAD https://raw.githubusercontent.com/ROCm-DS/ROCmDS-CMake/release/<VERSION_MAJOR>.<VERSION_MINOR>.x/RAPIDS.cmake
+# <<<<<<< OLD CODE from a736159 (734c43d) - COMMENTED OUT
+# # <<<<<<< OLD CODE from 6b9c3a0 (11c5bc7) - COMMENTED OUT
+# #   file(DOWNLOAD https://raw.githubusercontent.com/ROCm-DS/ROCmDS-CMake/release/<VERSION_MAJOR>.<VERSION_MINOR>.x/RAPIDS.cmake
+# # =======
+#   file(DOWNLOAD https://raw.githubusercontent.com/rapidsai/rapids-cmake/main/RAPIDS.cmake
+# # >>>>>>> END NEW CODE (11c5bc7)
 # =======
-  file(DOWNLOAD https://raw.githubusercontent.com/rapidsai/rapids-cmake/main/RAPIDS.cmake
-# >>>>>>> END NEW CODE (11c5bc7)
+  file(DOWNLOAD https://raw.githubusercontent.com/rapidsai/rapids-cmake/release/25.12/RAPIDS.cmake
+# >>>>>>> END NEW CODE (734c43d)
     ${CMAKE_CURRENT_BINARY_DIR}/<PROJECT>_RAPIDS.cmake)
 endif()
 include(${CMAKE_CURRENT_BINARY_DIR}/<PROJECT>_RAPIDS.cmake)
@@ -229,4 +233,8 @@ A few notes:
 
 <!-- ## Contributing
 
-Review the [CONTRIBUTING.md](https://github.com/ROCm-DS/ROCmDS-CMake/blob/release/1.0.x/CONTRIBUTING.md) file for information on how to contribute code and issues to the project. -->
+# <<<<<<< OLD CODE from a736159 (734c43d) - COMMENTED OUT
+# Review the [CONTRIBUTING.md](https://github.com/ROCm-DS/ROCmDS-CMake/blob/release/1.0.x/CONTRIBUTING.md) file for information on how to contribute code and issues to the project. -->
+# =======
+Review the [CONTRIBUTING.md](https://github.com/rapidsai/rapids-cmake/blob/release/25.12/CONTRIBUTING.md) file for information on how to contribute code and issues to the project.
+# >>>>>>> END NEW CODE (734c43d)
