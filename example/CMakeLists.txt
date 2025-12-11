@@ -56,10 +56,14 @@ include(rapids-find)
 
 rapids_cuda_init_architectures(integration) #: NOTE(HIP/AMD): Delegates to rapids-hip*
 
-project(integration VERSION 21.12 LANGUAGES C CXX HIP) #: NOTE(HIP/AMD): CUDA->HIP
+# <<<<<<< OLD CODE from 1773bd8 (5bf714e) - COMMENTED OUT
+# project(integration VERSION 21.12 LANGUAGES C CXX HIP) #: NOTE(HIP/AMD): CUDA->HIP
+# =======
+project(integration VERSION 26.02 LANGUAGES C CXX CUDA)
+# >>>>>>> END NEW CODE (5bf714e)
 message(STATUS "Example: CMAKE_CUDA_ARCHITECTURES: ${CMAKE_CUDA_ARCHITECTURES}")
 
-option(CUDA_STATIC_RUNTIME "Use CUDA static runtime" OFF)
+option(CUDA_STATIC_RUNTIME "Use CUDA static runtime" ON)
 # Set a default build type if none was specified
 rapids_cmake_build_type(Release)
 
