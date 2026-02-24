@@ -36,7 +36,11 @@ jobs:
   docs-build:
     if: github.ref_type == 'branch'
     secrets: inherit
-    uses: rapidsai/shared-workflows/.github/workflows/custom-job.yaml@release/26.02
+# <<<<<<< OLD CODE from 6c243a68 (5a62d8b0) - COMMENTED OUT
+#     uses: rapidsai/shared-workflows/.github/workflows/custom-job.yaml@release/26.02
+# =======
+    uses: rapidsai/shared-workflows/.github/workflows/custom-job.yaml@python-3.14
+# >>>>>>> END NEW CODE (5a62d8b0)
     with:
       arch: "amd64"
       branch: ${{ inputs.branch }}
