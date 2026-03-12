@@ -36,12 +36,16 @@ jobs:
   docs-build:
     if: github.ref_type == 'branch'
     secrets: inherit
-    uses: rapidsai/shared-workflows/.github/workflows/custom-job.yaml@release/26.04
+# <<<<<<< OLD CODE from d16160f5 (5a62d8b0) - COMMENTED OUT
+#     uses: rapidsai/shared-workflows/.github/workflows/custom-job.yaml@release/26.04
+# =======
+    uses: rapidsai/shared-workflows/.github/workflows/custom-job.yaml@main
+# >>>>>>> END NEW CODE (5a62d8b0)
     with:
       arch: "amd64"
       branch: ${{ inputs.branch }}
       build_type: ${{ inputs.build_type || 'branch' }}
-      container_image: "rapidsai/ci-conda:26.04-latest"
+      container_image: "rapidsai/ci-conda:26.06-latest"
       date: ${{ inputs.date }}
       node_type: "cpu4"
       script: "ci/build_docs.sh"
