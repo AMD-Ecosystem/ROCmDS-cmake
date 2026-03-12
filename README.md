@@ -45,7 +45,11 @@ Content](https://cmake.org/cmake/help/latest/module/FetchContent.html) into your
 cmake_minimum_required(...)
 
 if(NOT EXISTS ${CMAKE_CURRENT_BINARY_DIR}/<PROJECT>_RAPIDS.cmake)
-  file(DOWNLOAD https://raw.githubusercontent.com/ROCm-DS/ROCmDS-CMake/release/rocmds-26.03/RAPIDS.cmake
+# <<<<<<< OLD CODE from d27564ae (5a62d8b0) - COMMENTED OUT
+#   file(DOWNLOAD https://raw.githubusercontent.com/ROCm-DS/ROCmDS-CMake/release/rocmds-26.03/RAPIDS.cmake
+# =======
+  file(DOWNLOAD https://raw.githubusercontent.com/rapidsai/rapids-cmake/release/26.04/RAPIDS.cmake
+# >>>>>>> END NEW CODE (5a62d8b0)
     ${CMAKE_CURRENT_BINARY_DIR}/<PROJECT>_RAPIDS.cmake)
 endif()
 include(${CMAKE_CURRENT_BINARY_DIR}/<PROJECT>_RAPIDS.cmake)
@@ -221,4 +225,8 @@ A few notes:
 
 <!-- ## Contributing
 
-Review the [CONTRIBUTING.md](https://github.com/ROCm-DS/ROCmDS-CMake/blob/release/rocmds-26.03/CONTRIBUTING.md) file for information on how to contribute code and issues to the project. -->
+# <<<<<<< OLD CODE from d27564ae (5a62d8b0) - COMMENTED OUT
+# Review the [CONTRIBUTING.md](https://github.com/ROCm-DS/ROCmDS-CMake/blob/release/rocmds-26.03/CONTRIBUTING.md) file for information on how to contribute code and issues to the project. -->
+# =======
+Review the [CONTRIBUTING.md](https://github.com/rapidsai/rapids-cmake/blob/release/26.04/CONTRIBUTING.md) file for information on how to contribute code and issues to the project.
+# >>>>>>> END NEW CODE (5a62d8b0)
