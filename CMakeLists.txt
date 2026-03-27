@@ -51,27 +51,45 @@
 cmake_minimum_required(VERSION 3.30.4 FATAL_ERROR)
 
 option(RAPIDS_CMAKE_ONLY_CREATE_PACKAGE "Package the `rapids-cmake` subfolder." OFF)
-if (RAPIDS_CMAKE_ONLY_CREATE_PACKAGE)
+if(RAPIDS_CMAKE_ONLY_CREATE_PACKAGE)
   project(rocmds_cmake VERSION 4.0.0)
 
-  set(DEFAULT_RAPIDS_CMAKE_DEVEL_PACKAGE_SUFFIX "dev")
-  if (DEFINED ENV{RAPIDS_CMAKE_DEVEL_PACKAGE_SUFFIX})
-    set(DEFAULT_RAPIDS_CMAKE_DEVEL_PACKAGE_SUFFIX "$ENV{RAPIDS_CMAKE_DEVEL_PACKAGE_SUFFIX}")
-  endif()
-  set(RAPIDS_CMAKE_DEVEL_PACKAGE_SUFFIX "${DEFAULT_RAPIDS_CMAKE_DEVEL_PACKAGE_SUFFIX}")
-  set(CPACK_PACKAGE_NAME "rocmds-cmake-${RAPIDS_CMAKE_DEVEL_PACKAGE_SUFFIX}" CACHE STRING "Overwrite package name.")
+  set(CPACK_PACKAGE_NAME "rocmds-cmake" CACHE STRING "Overwrite package name.")
+  set(CPACK_PACKAGE_VENDOR "Advanced Micro Devices, Inc.")
+  set(CPACK_DEBIAN_PACKAGE_MAINTAINER "${CPACK_PACKAGE_VENDOR}")
+  set(CPACK_OUTPUT_FILE_PREFIX "dist" CACHE PATH "Package output file prefix.")
+  set(CPACK_PACKAGE_VERSION_MAJOR ${PROJECT_VERSION_MAJOR})
+  set(CPACK_PACKAGE_VERSION_MINOR ${PROJECT_VERSION_MINOR})
+  set(CPACK_PACKAGE_VERSION_PATCH ${PROJECT_VERSION_PATCH})
+  set(CPACK_PACKAGING_INSTALL_PREFIX "/opt/rocm-ds" CACHE PATH "Package install prefix.")
 
   set(rapids-cmake-dir "${CMAKE_CURRENT_LIST_DIR}/rapids-cmake")
   set(install_prefix share/cmake/rocmds-cmake)
 
-  install(FILES init.cmake VERSION RAPIDS_BRANCH DESTINATION ${install_prefix})
-  install(DIRECTORY ${rapids-cmake-dir}/ DESTINATION ${install_prefix}/modules
+  # note: 'devel' is a group name defined by us that we specify in the install() calls below, it is
+  # not a special name for CPack.
+  set(CPACK_COMPONENTS_ALL devel)
+  set(CPACK_RPM_COMPONENT_INSTALL ON)
+  set(CPACK_DEB_COMPONENT_INSTALL ON)
+
+  # note: the RPM CPack default name will automatically append our group name 'devel' to our 'devel'
+  # component package. note: we prefer '-dev' suffix for Debian packages note: While there is
+  # CPACK_DEBIAN_DEVEL_PACKAGE_NAME, there is no CPACK_RPM_DEVEL_PACKAGE_NAME
+  set(CPACK_RPM_FILE_NAME RPM-DEFAULT)
+  set(CPACK_DEBIAN_FILE_NAME DEB-DEFAULT)
+  set(CPACK_DEBIAN_DEVEL_PACKAGE_NAME "${CPACK_PACKAGE_NAME}-dev")
+
+  install(FILES init.cmake VERSION RAPIDS_BRANCH DESTINATION ${install_prefix} COMPONENT devel)
+  install(DIRECTORY ${rapids-cmake-dir}/ DESTINATION ${install_prefix}/modules COMPONENT devel
           PATTERN "rapids-cmake/rapids-cmake.cmake" EXCLUDE)
 
-  # Make `include(rapids-cmake)` entry point for configuring ROCm-DS CMake correctly
-  # when using it via module path.
+  # Make `include(rapids-cmake)` entry point for configuring ROCm-DS CMake correctly when using it
+  # via module path.
   file(MAKE_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/_prepare)
   set(modified-rapids-cmake-file ${CMAKE_CURRENT_BINARY_DIR}/_prepare/rapids-cmake.cmake)
+  # note: cmakelang=0.6.13 does not accept `file(COPY_FILE ...)` (E1126)
+
+  # cmake-lint: disable=E1126
   file(COPY_FILE ${rapids-cmake-dir}/rapids-cmake.cmake ${modified-rapids-cmake-file})
   file(APPEND ${modified-rapids-cmake-file}
        [=[
@@ -79,17 +97,8 @@ if (RAPIDS_CMAKE_ONLY_CREATE_PACKAGE)
 set(RAPIDS_CMAKE_FROM_MODULE_PATH ON)
 set(rapids-cmake-dir ${CMAKE_CURRENT_LIST_DIR})
        ]=])
-  install(FILES ${modified-rapids-cmake-file}
-          DESTINATION ${install_prefix}/modules)
+  install(FILES ${modified-rapids-cmake-file} DESTINATION ${install_prefix}/modules COMPONENT devel)
 
-  set(CPACK_PACKAGE_VENDOR "Advanced Micro Devices, Inc.")
-  set(CPACK_DEBIAN_PACKAGE_MAINTAINER "${CPACK_PACKAGE_VENDOR}")
-  set(CPACK_OUTPUT_FILE_PREFIX "dist" CACHE PATH "Package output file prefix.")
-  set(CPACK_PACKAGE_VERSION_MAJOR ${PROJECT_VERSION_MAJOR})
-  set(CPACK_PACKAGE_VERSION_MINOR ${PROJECT_VERSION_MINOR})
-  set(CPACK_PACKAGE_VERSION_PATCH ${PROJECT_VERSION_PATCH})
-  set(CPACK_DEBIAN_FILE_NAME DEB-DEFAULT)
-  set(CPACK_PACKAGING_INSTALL_PREFIX "/opt/rocm-ds" CACHE PATH "Package install prefix.")
   include(CPack)
   return() # return prematurely
 endif()
