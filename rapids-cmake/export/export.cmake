@@ -26,6 +26,7 @@ Generate a projects -Config.cmake module and all related information
       [ DOCUMENTATION <doc_variable> ]
       [ FINAL_CODE_BLOCK <code_block_variable> ]
       [ LANGUAGES <langs...> ]
+      [ PROJECT_COMPONENT <component_name> ]
       )
 
 The :cmake:command:`rapids_export` function allow projects to easily generate a fully
@@ -139,6 +140,12 @@ calls to :cmake:command:`find_dependency`, or :cmake:command:`CPMFindPackage`.
   here overcomes these limitations and makes it possible for packages included
   via `CPM` to enable languages.
 
+``PROJECT_COMPONENT``
+  .. versionadded:: ROCmDS-CMake 3.00.00
+
+  Overwrite the default component `${project_name}` passed to the
+  ``install(... COMPONENT <component>)`` calls that install the project's
+  CMake configuration files.
 
 Example on how to properly use :cmake:command:`rapids_export`:
 
@@ -192,9 +199,13 @@ function(rapids_export type project_name)
   string(TOUPPER ${project_name} project_name_uppercase)
 
   set(options "")
-  set(one_value EXPORT_SET VERSION NAMESPACE DOCUMENTATION FINAL_CODE_BLOCK)
+  set(one_value EXPORT_SET VERSION NAMESPACE DOCUMENTATION FINAL_CODE_BLOCK PROJECT_COMPONENT)
   set(multi_value GLOBAL_TARGETS COMPONENTS COMPONENTS_EXPORT_SET LANGUAGES)
   cmake_parse_arguments(_RAPIDS "${options}" "${one_value}" "${multi_value}" ${ARGN})
+
+  if(NOT DEFINED _RAPIDS_PROJECT_COMPONENT)
+    set(_RAPIDS_PROJECT_COMPONENT "${project_name}")
+  endif()
 
   set(rapids_version_set ON)
   if(DEFINED _RAPIDS_VERSION AND NOT _RAPIDS_VERSION)
@@ -292,10 +303,10 @@ if EXPORT_NAME isn't set for the export targets.")
               FILE ${project_name}-targets.cmake
               NAMESPACE ${_RAPIDS_NAMESPACE}
               DESTINATION "${install_location}"
-              COMPONENT ${project_name})
+              COMPONENT ${_RAPIDS_PROJECT_COMPONENT})
     else()
       install(EXPORT ${_RAPIDS_EXPORT_SET} FILE ${project_name}-targets.cmake
-              DESTINATION "${install_location}" COMPONENT ${project_name})
+              DESTINATION "${install_location}" COMPONENT ${_RAPIDS_PROJECT_COMPONENT})
     endif()
 
     if(TARGET rapids_export_install_${_RAPIDS_EXPORT_SET})
@@ -313,7 +324,8 @@ if EXPORT_NAME isn't set for the export targets.")
     endif()
 
     # Install everything we have generated
-    install(DIRECTORY "${scratch_dir}/" DESTINATION "${install_location}" COMPONENT ${project_name})
+    install(DIRECTORY "${scratch_dir}/" DESTINATION "${install_location}"
+            COMPONENT ${_RAPIDS_PROJECT_COMPONENT})
 
   else()
     set(install_location "${PROJECT_BINARY_DIR}")
