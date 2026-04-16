@@ -124,6 +124,7 @@ add_cmake_config_test(cpm_cccl-export.cmake)
 add_cmake_build_test(cpm_cccl-version-2-8.cmake NO_CPM_CACHE)
 add_cmake_build_test(cpm_cccl-version-3-0.cmake NO_CPM_CACHE)
 add_cmake_build_test(cpm_cccl-preserve-custom-install-loc)
+add_cmake_config_test(cpm_cccl-package-redirect.cmake)
 
 if(CUDA_BACKEND)
 add_cmake_config_test(cpm_cuco-simple.cmake)
@@ -176,3 +177,4 @@ add_cmake_config_test(cpm_proprietary-url-no-ctk-parsing.cmake)
 
 add_cmake_config_test(cpm_rmm-export.cmake)
 add_cmake_config_test(cpm_rmm-simple.cmake)
+add_cmake_config_test(cpm_rmm-package-redirect.cmake NO_CPM_CACHE)
