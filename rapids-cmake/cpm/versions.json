@@ -13,51 +13,10 @@
       "git_tag": "097aa718f25d44315cadb80b407144ad455ee4f9"
     },
     "CCCL": {
-# <<<<<<< OLD CODE from f238c3b (fb5d863) - COMMENTED OUT
-# # <<<<<<< OLD CODE from 0a16ba8 (7fd894d) - COMMENTED OUT
-# # # <<<<<<< OLD CODE from ca8fa7f (dd8a454) - COMMENTED OUT
-# # #       "version": "3.0.3",
-# # #       "git_shallow": false,
-# # #       "git_url": "https://github.com/NVIDIA/cccl.git",
-# # #       "git_tag": "8c04b6539859932f5602e86d38314e4d87f96420"
-# # # =======
-# #       "version": "3.1.0",
-# #       "git_shallow": false,
-# #       "git_url": "https://github.com/NVIDIA/cccl.git",
-# # # <<<<<<< OLD CODE from 099a8c7 (7e5e359) - COMMENTED OUT
-# # #       "git_tag": "db5c31a90375df0ae68be7adad72fc4b1a355fc1"
-# # # # >>>>>>> END NEW CODE (dd8a454)
-# # # =======
-# #       "git_tag": "ecfd3adfaa7ebcb81d80d5b297ab3551619fda02"
-# # # >>>>>>> END NEW CODE (7e5e359)
-# # =======
-#       "version": "3.1.3",
-#       "git_shallow": false,
-#       "git_url": "https://github.com/NVIDIA/cccl.git",
-#       "git_tag": "d69eb55e0a0f6d55ca2af4c4edb2c7055c003993"
-# # >>>>>>> END NEW CODE (7fd894d)
-# =======
       "version": "3.2.0",
       "git_shallow": false,
       "git_url": "https://github.com/NVIDIA/cccl.git",
-# <<<<<<< OLD CODE from 8eceae0 (09035a3) - COMMENTED OUT
-# # <<<<<<< OLD CODE from 6ea64e8 (04007a9) - COMMENTED OUT
-# # # <<<<<<< OLD CODE from 66da3e9 (126ac5d) - COMMENTED OUT
-# # # # <<<<<<< OLD CODE from 6d77cae (cc96c8b) - COMMENTED OUT
-# # # #       "git_tag": "ce4fda8278b1692bd36e88e6e6cbe137fad8be73"
-# # # # # >>>>>>> END NEW CODE (fb5d863)
-# # # # =======
-# # #       "git_tag": "698c2511de5ebf693086d6ff7a9d0d94cbb64922"
-# # # # >>>>>>> END NEW CODE (cc96c8b)
-# # # =======
-# #       "git_tag": "01b14f5a5d88586523b9ed43bccca93df1fa7cb4"
-# # # >>>>>>> END NEW CODE (126ac5d)
-# # =======
-#       "git_tag": "ffa5468d4a307f08c21c07ae900acd453850929b"
-# # >>>>>>> END NEW CODE (04007a9)
-# =======
       "git_tag": "477f8bcb27eb80c28e18bbd97e5dde80ecfc648b"
-# >>>>>>> END NEW CODE (09035a3)
     },
     "cuco": {
       "version": "0.0.1",
@@ -109,71 +68,50 @@
       "git_url": "https://github.com/rapidsai/rmm.git",
       "git_tag": "${rapids-cmake-checkout-tag}",
       "source_subdir": "cpp"
-# <<<<<<< OLD CODE from 206224c (8bdfb26) - COMMENTED OUT
-# # <<<<<<< OLD CODE from c6e92cf (7d466de) - COMMENTED OUT
-# # # <<<<<<< OLD CODE from 771ee34 (bddb835) - COMMENTED OUT
-# # #     },
-# # #     "spdlog": {
-# # #       "version": "1.14.1",
-# # #       "git_shallow": false,
-# # #       "git_url": "https://github.com/gabime/spdlog.git",
-# # #       "git_tag": "27cb4c76708608465c413f6d0e6b8d99a4d84302"
-# # #     },
-# # #     "hipco" : {
-# # #       "version" : "0.4.0",
-# # #       "git_url" : "https://github.com/${rapids-cmake-rocm-org}/hipCollections",
-# # #       "git_tag" : "amd-integration"
-# # #     },
-# # #     "hipmm" : {
-# # #       "version" : "4.0.0",
-# # #       "git_url" : "https://github.com/${rapids-cmake-rocm-ds-org}/hipMM",
-# # #       "git_tag" : "amd-integration",
-# # #       "source_subdir": "cpp"
-# # #     },
-# # #     "hipcomp" : {
-# # #       "version" : "2.3.0",
-# # #       "git_url" : "https://github.com/${rapids-cmake-rocm-org}/hipcomp-core",
-# # #       "git_tag" : "amd-integration"
-# # #     },
-# # #     "libhipcxx" : {
-# # #       "version" : "3.0.2",
-# # #       "git_url" : "https://github.com/${rapids-cmake-rocm-org}/libhipcxx",
-# # #       "git_tag" : "amd-integration"
-# # #     },
-# # #     "hipbench": {
-# # #       "version": "0.3.0",
-# # #       "git_shallow": false,
-# # #       "git_url": "https://github.com/${rapids-cmake-rocm-org}/hipBench",
-# # #       "git_tag": "amd-integration"
-# # #     },
-# # #     "rocthrust" : {
-# # #       "version" : "4.0.0",
-# # #       "git_url" : "https://github.com/${rapids-cmake-rocm-org}/rocThrust",
-# # #       "git_tag" : "We-always-use-find_package-for-rocthrust."
-# # #     },
-# # #     "jitify-hip" : {
-# # #       "version" : "0.2.0",
-# # #       "git_url" : "https://github.com/${rapids-cmake-rocm-org}/jitify",
-# # #       "git_tag" : "amd-integration",
-# # #       "git_shallow": true
-# # #     },
-# # #     "rocmds_logger": {
-# # #       "version": "1.0.0",
-# # #       "git_shallow": false,
-# # #       "git_url": "https://github.com/${rapids-cmake-rocm-ds-org}/ROCmDS-Logger",
-# # #       "git_tag": "amd-integration"
-# # # =======
-# # # >>>>>>> END NEW CODE (bddb835)
-# # =======
-#     },
-#     "spdlog": {
-#       "version": "1.14.1",
-#       "git_shallow": false,
-#       "git_url": "https://github.com/gabime/spdlog.git",
-#       "git_tag": "27cb4c76708608465c413f6d0e6b8d99a4d84302"
-# # >>>>>>> END NEW CODE (7d466de)
-# =======
-# >>>>>>> END NEW CODE (8bdfb26)
+    },
+    "hipco" : {
+      "version" : "0.4.0",
+      "git_url" : "https://github.com/${rapids-cmake-rocm-org}/hipCollections",
+      "git_tag" : "amd-integration"
+    },
+    "hipmm" : {
+      "version" : "4.0.0",
+      "git_url" : "https://github.com/${rapids-cmake-rocm-ds-org}/hipMM",
+      "git_tag" : "amd-integration",
+      "source_subdir": "cpp"
+    },
+    "hipcomp" : {
+      "version" : "2.3.0",
+      "git_url" : "https://github.com/${rapids-cmake-rocm-org}/hipcomp-core",
+      "git_tag" : "amd-integration"
+    },
+    "libhipcxx" : {
+      "version" : "3.0.2",
+      "git_url" : "https://github.com/${rapids-cmake-rocm-org}/libhipcxx",
+      "git_tag" : "amd-integration"
+    },
+    "hipbench": {
+      "version": "0.3.0",
+      "git_shallow": false,
+      "git_url": "https://github.com/${rapids-cmake-rocm-org}/hipBench",
+      "git_tag": "amd-integration"
+    },
+    "rocthrust" : {
+      "version" : "4.0.0",
+      "git_url" : "https://github.com/${rapids-cmake-rocm-org}/rocThrust",
+      "git_tag" : "We-always-use-find_package-for-rocthrust."
+    },
+    "jitify-hip" : {
+      "version" : "0.2.0",
+      "git_url" : "https://github.com/${rapids-cmake-rocm-org}/jitify",
+      "git_tag" : "amd-integration",
+      "git_shallow": true
+    },
+    "rocmds_logger": {
+      "version": "1.0.0",
+      "git_shallow": false,
+      "git_url": "https://github.com/${rapids-cmake-rocm-ds-org}/ROCmDS-Logger",
+      "git_tag": "amd-integration"
     }
   }
 }
