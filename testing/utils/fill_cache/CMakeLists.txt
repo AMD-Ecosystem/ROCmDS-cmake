@@ -2,34 +2,30 @@
 # cmake-format: off
 # SPDX-FileCopyrightText: Copyright (c) 2021-2025, NVIDIA CORPORATION.
 # SPDX-License-Identifier: Apache-2.0
-# <<<<<<< OLD CODE from fd70267 (0e5bafc) - COMMENTED OUT
-# #=============================================================================
-# # MIT License
-# #
-# # Modifications Copyright (c) 2023-2024 Advanced Micro Devices, Inc.
-# #
-# # Permission is hereby granted, free of charge, to any person obtaining a copy
-# # of this software and associated documentation files (the "Software"), to deal
-# # in the Software without restriction, including without limitation the rights
-# # to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-# # copies of the Software, and to permit persons to whom the Software is
-# # furnished to do so, subject to the following conditions:
-# #
-# # The above copyright notice and this permission notice shall be included in all
-# # copies or substantial portions of the Software.
-# #
-# # THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-# # IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-# # FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-# # AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-# # LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-# # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-# # SOFTWARE.
-# #=============================================================================
-# =======
 # cmake-format: on
 # =============================================================================
-# >>>>>>> END NEW CODE (0e5bafc)
+# MIT License
+#
+# Modifications Copyright (c) 2023-2026 Advanced Micro Devices, Inc.
+#
+# Permission is hereby granted, free of charge, to any person obtaining a copy
+# of this software and associated documentation files (the "Software"), to deal
+# in the Software without restriction, including without limitation the rights
+# to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+# copies of the Software, and to permit persons to whom the Software is
+# furnished to do so, subject to the following conditions:
+#
+# The above copyright notice and this permission notice shall be included in all
+# copies or substantial portions of the Software.
+#
+# THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+# IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+# FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+# AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+# LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+# OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+# SOFTWARE.
+# =============================================================================
 cmake_minimum_required(VERSION 3.30.4)
 
 project(fill_cache LANGUAGES CXX)
@@ -60,20 +56,7 @@ if(NOT CUDA_BACKEND)
 include(${rapids-cmake-dir}/cpm/hipmm.cmake)
 else()
 include(${rapids-cmake-dir}/cpm/rmm.cmake)
-# <<<<<<< OLD CODE from 206224c (8bdfb26) - COMMENTED OUT
-# # <<<<<<< OLD CODE from c6e92cf (7d466de) - COMMENTED OUT
-# # # <<<<<<< OLD CODE from 771ee34 (bddb835) - COMMENTED OUT
-# # # endif()
-# # # include(${rapids-cmake-dir}/cpm/spdlog.cmake)
-# # # include(${rapids-cmake-dir}/cpm/fmt.cmake)
-# # # =======
-# # # >>>>>>> END NEW CODE (bddb835)
-# # =======
-# include(${rapids-cmake-dir}/cpm/spdlog.cmake)
-# include(${rapids-cmake-dir}/cpm/fmt.cmake)
-# # >>>>>>> END NEW CODE (7d466de)
-# =======
-# >>>>>>> END NEW CODE (8bdfb26)
+endif()
 
 rapids_cpm_init(GENERATE_PINNED_VERSIONS)
 
@@ -101,20 +84,7 @@ if(NOT CUDA_BACKEND)
 rapids_cpm_hipmm(DOWNLOAD_ONLY ON)
 else()
 rapids_cpm_rmm(DOWNLOAD_ONLY ON)
-# <<<<<<< OLD CODE from 206224c (8bdfb26) - COMMENTED OUT
-# # <<<<<<< OLD CODE from c6e92cf (7d466de) - COMMENTED OUT
-# # # <<<<<<< OLD CODE from 771ee34 (bddb835) - COMMENTED OUT
-# # # endif()
-# # # rapids_cpm_spdlog(DOWNLOAD_ONLY ON)
-# # # rapids_cpm_fmt(DOWNLOAD_ONLY ON)
-# # # =======
-# # # >>>>>>> END NEW CODE (bddb835)
-# # =======
-# rapids_cpm_spdlog(DOWNLOAD_ONLY ON)
-# rapids_cpm_fmt(DOWNLOAD_ONLY ON)
-# # >>>>>>> END NEW CODE (7d466de)
-# =======
-# >>>>>>> END NEW CODE (8bdfb26)
+endif()
 
 # Download all binary packages
 set(CPM_DOWNLOAD_ALL "OFF")
