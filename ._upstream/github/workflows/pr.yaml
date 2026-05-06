@@ -1,14 +1,12 @@
 name: pr
-
 on:
   push:
     branches:
       - "pull-request/[0-9]+"
-
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: true
-
+permissions: {}
 jobs:
   pr-builder:
     needs:
@@ -16,11 +14,17 @@ jobs:
       - conda-cpp-tests
       - docs-build
       - telemetry-setup
-    secrets: inherit
-# <<<<<<< OLD CODE from d16160f5 (5a62d8b0) - COMMENTED OUT
-#     uses: rapidsai/shared-workflows/.github/workflows/pr-builder.yaml@release/26.04
+# <<<<<<< OLD CODE from b0daa401 (5a62d8b0) - COMMENTED OUT
+#     secrets: inherit
+# # <<<<<<< OLD CODE from d16160f5 (5a62d8b0) - COMMENTED OUT
+# #     uses: rapidsai/shared-workflows/.github/workflows/pr-builder.yaml@release/26.04
+# # =======
+#     uses: rapidsai/shared-workflows/.github/workflows/pr-builder.yaml@main
+# # >>>>>>> END NEW CODE (5a62d8b0)
 # =======
     uses: rapidsai/shared-workflows/.github/workflows/pr-builder.yaml@main
+    permissions:
+      contents: read
 # >>>>>>> END NEW CODE (5a62d8b0)
   telemetry-setup:
     runs-on: ubuntu-latest
@@ -34,7 +38,6 @@ jobs:
         if: ${{ vars.TELEMETRY_ENABLED == 'true' }}
         uses: rapidsai/shared-actions/telemetry-dispatch-stash-base-env-vars@main
   checks:
-    secrets: inherit
     needs: telemetry-setup
 # <<<<<<< OLD CODE from d16160f5 (5a62d8b0) - COMMENTED OUT
 #     uses: rapidsai/shared-workflows/.github/workflows/checks.yaml@release/26.04
@@ -43,21 +46,37 @@ jobs:
 # >>>>>>> END NEW CODE (5a62d8b0)
     with:
       ignored_pr_jobs: telemetry-summarize
+    permissions:
+      contents: read
   conda-cpp-tests:
-    secrets: inherit
-# <<<<<<< OLD CODE from d16160f5 (5a62d8b0) - COMMENTED OUT
-#     uses: rapidsai/shared-workflows/.github/workflows/conda-cpp-tests.yaml@release/26.04
+# <<<<<<< OLD CODE from b0daa401 (5a62d8b0) - COMMENTED OUT
+#     secrets: inherit
+# # <<<<<<< OLD CODE from d16160f5 (5a62d8b0) - COMMENTED OUT
+# #     uses: rapidsai/shared-workflows/.github/workflows/conda-cpp-tests.yaml@release/26.04
+# # =======
 # =======
+    secrets: inherit # zizmor: ignore[secrets-inherit]
+# >>>>>>> END NEW CODE (5a62d8b0)
     uses: rapidsai/shared-workflows/.github/workflows/conda-cpp-tests.yaml@main
 # >>>>>>> END NEW CODE (5a62d8b0)
     with:
       build_type: pull-request
       script: ci/test_cpp.sh
+    permissions:
+      actions: read
+      contents: read
+      id-token: write
+      packages: read
+      pull-requests: read
   docs-build:
-    secrets: inherit
-# <<<<<<< OLD CODE from d16160f5 (5a62d8b0) - COMMENTED OUT
-#     uses: rapidsai/shared-workflows/.github/workflows/custom-job.yaml@release/26.04
+# <<<<<<< OLD CODE from b0daa401 (5a62d8b0) - COMMENTED OUT
+#     secrets: inherit
+# # <<<<<<< OLD CODE from d16160f5 (5a62d8b0) - COMMENTED OUT
+# #     uses: rapidsai/shared-workflows/.github/workflows/custom-job.yaml@release/26.04
+# # =======
 # =======
+    secrets: inherit # zizmor: ignore[secrets-inherit]
+# >>>>>>> END NEW CODE (5a62d8b0)
     uses: rapidsai/shared-workflows/.github/workflows/custom-job.yaml@main
 # >>>>>>> END NEW CODE (5a62d8b0)
     with:
@@ -66,6 +85,12 @@ jobs:
       arch: "amd64"
       container_image: "rapidsai/ci-conda:26.06-latest"
       script: "ci/build_docs.sh"
+    permissions:
+      actions: read
+      contents: read
+      id-token: write
+      packages: read
+      pull-requests: read
   telemetry-summarize:
     # This job must use a self-hosted runner to record telemetry traces.
     runs-on: linux-amd64-cpu4
