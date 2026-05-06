@@ -1,21 +1,12 @@
-#=============================================================================
-# Copyright (c) 2023-2025, NVIDIA CORPORATION.
-#
-# Licensed under the Apache License, Version 2.0 (the "License");
-# you may not use this file except in compliance with the License.
-# You may obtain a copy of the License at
-#
-#     http://www.apache.org/licenses/LICENSE-2.0
-#
-# Unless required by applicable law or agreed to in writing, software
-# distributed under the License is distributed on an "AS IS" BASIS,
-# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-# See the License for the specific language governing permissions and
-# limitations under the License.
-#=============================================================================
+# =============================================================================
+# cmake-format: off
+# SPDX-FileCopyrightText: Copyright (c) 2023-2025, NVIDIA CORPORATION.
+# SPDX-License-Identifier: Apache-2.0
+# cmake-format: on
+# =============================================================================
 # MIT License
 #
-# Modifications Copyright (c) 2025 Advanced Micro Devices, Inc.
+# Modifications Copyright (c) 2025-2026 Advanced Micro Devices, Inc.
 #
 # Permission is hereby granted, free of charge, to any person obtaining a copy
 # of this software and associated documentation files (the "Software"), to deal
@@ -284,11 +275,19 @@ Result Variables
 # cmake-lint: disable=R0915
 function(rapids_cpm_hipccl)
   list(APPEND CMAKE_MESSAGE_CONTEXT "rapids.cpm.hipccl")
-  set(options CPM_ARGS)
+  set(options CPM_ARGS ENABLE_UNSTABLE)
   set(one_value "")
   set(multi_value "")
   # TODO handle GLOBAL_TARGETS
   cmake_parse_arguments(_RAPIDS "${options}" "${one_value}" "${multi_value}" ${ARGN})
+
+  # NOTE(HIP/AMD): ENABLE_UNSTABLE accepted for API parity with upstream rapids_cpm_cccl
+  # (added in upstream commit 9107d20). On the CUDA backend this enables CCCL_ENABLE_UNSTABLE
+  # to expose the CCCL::cudax target. There is no HIP equivalent of CCCL's experimental
+  # `cudax` library, so the flag is a no-op on the HIP backend.
+  if(_RAPIDS_ENABLE_UNSTABLE)
+    message(WARNING "rapids_cpm_hipccl: ENABLE_UNSTABLE accepted for API parity but is a no-op on HIP backend (no CCCL::cudax equivalent)")
+  endif()
 
   # Get CCCL package info
   # TODO handle cccl_shallow?

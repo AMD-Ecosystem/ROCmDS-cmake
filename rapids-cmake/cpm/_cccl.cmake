@@ -1,18 +1,9 @@
-#=============================================================================
-# Copyright (c) 2023-2025, NVIDIA CORPORATION.
-#
-# Licensed under the Apache License, Version 2.0 (the "License");
-# you may not use this file except in compliance with the License.
-# You may obtain a copy of the License at
-#
-#     http://www.apache.org/licenses/LICENSE-2.0
-#
-# Unless required by applicable law or agreed to in writing, software
-# distributed under the License is distributed on an "AS IS" BASIS,
-# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-# See the License for the specific language governing permissions and
-# limitations under the License.
-#=============================================================================
+# =============================================================================
+# cmake-format: off
+# SPDX-FileCopyrightText: Copyright (c) 2023-2025, NVIDIA CORPORATION.
+# SPDX-License-Identifier: Apache-2.0
+# cmake-format: on
+# =============================================================================
 include_guard(GLOBAL)
 
 #[=======================================================================[.rst:
@@ -37,7 +28,11 @@ file will automatically call `thrust_create_target(CCCL::Thrust FROM_OPTIONS)`.
 
   rapids_cpm_cccl( [BUILD_EXPORT_SET <export-name>]
                    [INSTALL_EXPORT_SET <export-name>]
+                   [ENABLE_UNSTABLE]
                    [<CPM_ARGS> ...])
+
+``ENABLE_UNSTABLE``
+  Enable unstable features in CCCL.
 
 .. |PKG_NAME| replace:: CCCL
 .. include:: common_package_args.txt
@@ -49,6 +44,7 @@ Result Targets
   CCCL::libcudacxx target will be created
   CCCL::CUB target will be created
   libcudacxx::libcudacxx target will be created
+  CCCL::cudax target will be created (if ENABLE_UNSTABLE is specified)
 
 Result Variables
 ^^^^^^^^^^^^^^^^
@@ -62,9 +58,18 @@ Result Variables
 function(rapids_cpm_cccl)
   list(APPEND CMAKE_MESSAGE_CONTEXT "rapids.cpm.cccl")
 
+  set(options ENABLE_UNSTABLE)
+  set(one_value)
+  set(multi_value)
+  cmake_parse_arguments(_RAPIDS "${options}" "${one_value}" "${multi_value}" ${ARGN})
+
   include("${rapids-cmake-dir}/cpm/detail/package_info.cmake")
-  rapids_cpm_package_info(CCCL ${ARGN} VERSION_VAR version FIND_VAR find_args CPM_VAR cpm_find_info
-                          TO_INSTALL_VAR to_install)
+  rapids_cpm_package_info(CCCL ${_RAPIDS_UNPARSED_ARGUMENTS} VERSION_VAR version FIND_VAR find_args
+                          CPM_VAR cpm_find_info TO_INSTALL_VAR to_install)
+
+  if(_RAPIDS_ENABLE_UNSTABLE)
+    list(APPEND cpm_find_info OPTIONS "CCCL_ENABLE_UNSTABLE ON")
+  endif()
 
   if(to_install)
     # Make sure we install CCCL into the `include/rapids` subdirectory instead of the default
@@ -85,9 +90,14 @@ function(rapids_cpm_cccl)
     endif()
   endif()
 
+  # CCCL's install rules use ${CCCL_TOPLEVEL_PROJECT} as a positional argument. When CCCL is
+  # included via add_subdirectory (not as the top-level project), this variable is undefined,
+  # causing cmake_parse_arguments to misparse the function call. Explicitly set it to OFF.
+  set(CCCL_TOPLEVEL_PROJECT OFF)
+
   include("${rapids-cmake-dir}/cpm/find.cmake")
   rapids_cpm_find(CCCL ${version} ${find_args} GLOBAL_TARGETS CCCL CCCL::CCCL CCCL::CUB
-                                                              CCCL::libcudacxx
+                                                              CCCL::libcudacxx CCCL::cudax
                   CPM_ARGS FIND_PACKAGE_ARGUMENTS EXACT ${cpm_find_info})
 
   include("${rapids-cmake-dir}/cpm/detail/display_patch_status.cmake")
