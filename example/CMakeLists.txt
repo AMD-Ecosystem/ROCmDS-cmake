@@ -2,48 +2,40 @@
 # cmake-format: off
 # SPDX-FileCopyrightText: Copyright (c) 2021-2025, NVIDIA CORPORATION.
 # SPDX-License-Identifier: Apache-2.0
-# <<<<<<< OLD CODE from fd70267 (0e5bafc) - COMMENTED OUT
-# #=============================================================================
-# # MIT License
-# #
-# # Modifications Copyright (c) 2023-2024 Advanced Micro Devices, Inc.
-# #
-# # Permission is hereby granted, free of charge, to any person obtaining a copy
-# # of this software and associated documentation files (the "Software"), to deal
-# # in the Software without restriction, including without limitation the rights
-# # to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-# # copies of the Software, and to permit persons to whom the Software is
-# # furnished to do so, subject to the following conditions:
-# #
-# # The above copyright notice and this permission notice shall be included in all
-# # copies or substantial portions of the Software.
-# #
-# # THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-# # IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-# # FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-# # AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-# # LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-# # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-# # SOFTWARE.
-# #=============================================================================
-#
-# #: NOTE(HIP/AMD)
-# set(CMAKE_HIP_SOURCE_FILE_EXTENSIONS hip;cu) #: NOTE(HIP/AMD): make *.cu an HIP language extension
-# set(CUDA_BACKEND FALSE) #: NOTE(HIP/AMD): not really required, FALSE is actually the default
-# set(HIP_AS_CUDA TRUE) #: NOTE(HIP/AMD): not really required, TRUE is actually the default
-# =======
 # cmake-format: on
 # =============================================================================
-# >>>>>>> END NEW CODE (0e5bafc)
+# MIT License
+#
+# Modifications Copyright (c) 2023-2026 Advanced Micro Devices, Inc.
+#
+# Permission is hereby granted, free of charge, to any person obtaining a copy
+# of this software and associated documentation files (the "Software"), to deal
+# in the Software without restriction, including without limitation the rights
+# to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+# copies of the Software, and to permit persons to whom the Software is
+# furnished to do so, subject to the following conditions:
+#
+# The above copyright notice and this permission notice shall be included in all
+# copies or substantial portions of the Software.
+#
+# THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+# IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+# FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+# AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+# LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+# OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+# SOFTWARE.
+# =============================================================================
+
+#: NOTE(HIP/AMD)
+set(CMAKE_HIP_SOURCE_FILE_EXTENSIONS hip;cu) #: NOTE(HIP/AMD): make *.cu an HIP language extension
+set(CUDA_BACKEND FALSE) #: NOTE(HIP/AMD): not really required, FALSE is actually the default
+set(HIP_AS_CUDA TRUE) #: NOTE(HIP/AMD): not really required, TRUE is actually the default
 
 cmake_minimum_required(VERSION 3.30.4 FATAL_ERROR)
 
 if(NOT EXISTS ${CMAKE_CURRENT_BINARY_DIR}/EXAMPLE_RAPIDS.cmake)
-# <<<<<<< OLD CODE from 6b9c3a0 (11c5bc7) - COMMENTED OUT
-#   file(DOWNLOAD https://raw.githubusercontent.com/ROCm/rapids-cmake/branch-24.06/RAPIDS.cmake
-# =======
-  file(DOWNLOAD https://raw.githubusercontent.com/rapidsai/rapids-cmake/main/RAPIDS.cmake
-# >>>>>>> END NEW CODE (11c5bc7)
+  file(DOWNLOAD https://raw.githubusercontent.com/ROCm-DS/ROCmDS-CMake/release/rocmds-26.03/RAPIDS.cmake #: NOTE(HIP/AMD): ROCm-DS fork release branch (AMD calendar)
        ${CMAKE_CURRENT_BINARY_DIR}/EXAMPLE_RAPIDS.cmake)
 endif()
 include(${CMAKE_CURRENT_BINARY_DIR}/EXAMPLE_RAPIDS.cmake)
@@ -56,11 +48,7 @@ include(rapids-find)
 
 rapids_cuda_init_architectures(integration) #: NOTE(HIP/AMD): Delegates to rapids-hip*
 
-# <<<<<<< OLD CODE from 1773bd8 (5bf714e) - COMMENTED OUT
-# project(integration VERSION 21.12 LANGUAGES C CXX HIP) #: NOTE(HIP/AMD): CUDA->HIP
-# =======
-project(integration VERSION 26.02 LANGUAGES C CXX CUDA)
-# >>>>>>> END NEW CODE (5bf714e)
+project(integration VERSION 26.02 LANGUAGES C CXX HIP) #: NOTE(HIP/AMD): CUDA->HIP
 message(STATUS "Example: CMAKE_CUDA_ARCHITECTURES: ${CMAKE_CUDA_ARCHITECTURES}")
 
 option(CUDA_STATIC_RUNTIME "Use CUDA static runtime" ON)

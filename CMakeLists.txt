@@ -2,34 +2,30 @@
 # cmake-format: off
 # SPDX-FileCopyrightText: Copyright (c) 2021-2025, NVIDIA CORPORATION.
 # SPDX-License-Identifier: Apache-2.0
-# <<<<<<< OLD CODE from fd70267 (0e5bafc) - COMMENTED OUT
-# #=============================================================================
-# # MIT License
-# #
-# # Modifications Copyright (c) 2025 Advanced Micro Devices, Inc.
-# #
-# # Permission is hereby granted, free of charge, to any person obtaining a copy
-# # of this software and associated documentation files (the "Software"), to deal
-# # in the Software without restriction, including without limitation the rights
-# # to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-# # copies of the Software, and to permit persons to whom the Software is
-# # furnished to do so, subject to the following conditions:
-# #
-# # The above copyright notice and this permission notice shall be included in all
-# # copies or substantial portions of the Software.
-# #
-# # THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-# # IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-# # FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-# # AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-# # LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-# # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-# # SOFTWARE.
-# #=============================================================================
-# =======
 # cmake-format: on
 # =============================================================================
-# >>>>>>> END NEW CODE (0e5bafc)
+# MIT License
+#
+# Modifications Copyright (c) 2025-2026 Advanced Micro Devices, Inc.
+#
+# Permission is hereby granted, free of charge, to any person obtaining a copy
+# of this software and associated documentation files (the "Software"), to deal
+# in the Software without restriction, including without limitation the rights
+# to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+# copies of the Software, and to permit persons to whom the Software is
+# furnished to do so, subject to the following conditions:
+#
+# The above copyright notice and this permission notice shall be included in all
+# copies or substantial portions of the Software.
+#
+# THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+# IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+# FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+# AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+# LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+# OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+# SOFTWARE.
+# =============================================================================
 #
 # This is the legacy entry point for projects using rapids-cmake.
 #
@@ -39,23 +35,17 @@
 # - rapids-cmake-dir
 # cmake-format: on
 #
-# <<<<<<< OLD CODE from fd70267 (0e5bafc) - COMMENTED OUT
-# # This is considered legacy as it has issues when multiple projects
-# # use rapids-cmake via CPM inside the same global project. In those
-# # cases it can fail due to CMAKE_MODULE_PREFIX not being exported properly
-# #
-# # Build ROCMmDS-CMake package:
-# #
-# # The option RAPIDS_CMAKE_ONLY_CREATE_PACKAGE will install (directly or via package install)
-# # a version of rapids-cmake/rapids-cmake.cmake that sets `rapids-cmake-dir` if
-# # included via `include(rapids-cmake)`. The latter requires that the installed
-# # `rapids-cmake` subfolder is in the CMAKE_MODULE_PATH, which must be done by
-# # the caller.
-# =======
 # This is considered legacy as it has issues when multiple projects use rapids-cmake via CPM inside
 # the same global project. In those cases it can fail due to CMAKE_MODULE_PREFIX not being exported
 # properly
-# >>>>>>> END NEW CODE (0e5bafc)
+#
+# Build ROCMmDS-CMake package:
+#
+# The option RAPIDS_CMAKE_ONLY_CREATE_PACKAGE will install (directly or via package install)
+# a version of rapids-cmake/rapids-cmake.cmake that sets `rapids-cmake-dir` if
+# included via `include(rapids-cmake)`. The latter requires that the installed
+# `rapids-cmake` subfolder is in the CMAKE_MODULE_PATH, which must be done by
+# the caller.
 
 # Enforce the minimum required CMake version for all users
 cmake_minimum_required(VERSION 3.30.4 FATAL_ERROR)
