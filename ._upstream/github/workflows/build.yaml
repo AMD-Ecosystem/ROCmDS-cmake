@@ -40,12 +40,16 @@ jobs:
 # # =======
 # =======
     secrets: inherit # zizmor: ignore[secrets-inherit]
-# <<<<<<< OLD CODE from d8389d08 (5a62d8b0) - COMMENTED OUT
-# # >>>>>>> END NEW CODE (5a62d8b0)
-#     uses: rapidsai/shared-workflows/.github/workflows/custom-job.yaml@main
+# <<<<<<< OLD CODE from 730a6176 (5a62d8b0) - COMMENTED OUT
+# # <<<<<<< OLD CODE from d8389d08 (5a62d8b0) - COMMENTED OUT
+# # # >>>>>>> END NEW CODE (5a62d8b0)
+# #     uses: rapidsai/shared-workflows/.github/workflows/custom-job.yaml@main
+# # # >>>>>>> END NEW CODE (5a62d8b0)
+# # =======
+#     uses: rapidsai/shared-workflows/.github/workflows/custom-job.yaml@cuda-13.2.0
 # # >>>>>>> END NEW CODE (5a62d8b0)
 # =======
-    uses: rapidsai/shared-workflows/.github/workflows/custom-job.yaml@cuda-13.2.0
+    uses: rapidsai/shared-workflows/.github/workflows/custom-job.yaml@release/26.06
 # >>>>>>> END NEW CODE (5a62d8b0)
     with:
       arch: "amd64"
