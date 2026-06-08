@@ -85,15 +85,6 @@ else()
 rapids_cpm_rmm(DOWNLOAD_ONLY ON)
 endif()
 
-# <<<<<<< OLD CODE from 9c5aa5be (5a62d8b0) - COMMENTED OUT
-# # Download all binary packages
-# set(CPM_DOWNLOAD_ALL "OFF")
-# if(CUDA_BACKEND)
-# rapids_cpm_nvcomp(USE_PROPRIETARY_BINARY ON DOWNLOAD_ONLY ON)
-# endif()
-#
-# =======
-# >>>>>>> END NEW CODE (5a62d8b0)
 # Print out all the packages in the cache
 get_cmake_property(cpm_packages CACHE_VARIABLES)
 set(packages)
