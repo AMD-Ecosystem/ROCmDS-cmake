@@ -54,7 +54,7 @@ if(NOT rapids-cmake-branch)
     set(rapids-cmake-branch $ENV{RAPIDS_CMAKE_BRANCH})
   else()
     # Define a default branch if the user doesn't set one
-    set(rapids-cmake-branch "release/rocmds-26.03")
+    set(rapids-cmake-branch "release/rocmds-26.06")
   endif()
 endif()
 
