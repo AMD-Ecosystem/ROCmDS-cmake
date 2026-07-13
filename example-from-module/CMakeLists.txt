@@ -13,9 +13,11 @@ include(rapids-find)
 
 message(STATUS "rapids-cmake-dir=${rapids-cmake-dir}")
 
+set(CMAKE_USER_MAKE_RULES_OVERRIDE "${CMAKE_CURRENT_LIST_DIR}/overrides.cmake")
+
 rapids_hip_init_architectures(MyTestProject)
 
-project(MyTestProject VERSION 0.0.0)
+project(MyTestProject VERSION 0.0.0 LANGUAGES C CXX HIP)
 
 rapids_cpm_init()
 

@@ -38,11 +38,21 @@
 
 cmake_minimum_required(VERSION 3.23.1 FATAL_ERROR)
 
-if(NOT EXISTS ${CMAKE_CURRENT_BINARY_DIR}/EXAMPLE_RAPIDS.cmake)
-  file(DOWNLOAD https://raw.githubusercontent.com/ROCm-DS/ROCmDS-CMake/release/1.0.x/RAPIDS.cmake
-       ${CMAKE_CURRENT_BINARY_DIR}/EXAMPLE_RAPIDS.cmake)
+set(RAPIDS_CMAKE_MODULE_PATH
+    $ENV{RAPIDS_CMAKE_MODULE_PATH}
+    CACHE FILEPATH "Announce that ROCmDS-CMake is available via the provided module path."
+)
+if(NOT "${RAPIDS_CMAKE_MODULE_PATH}" STREQUAL "")
+  # Prefer the user-provided path to the default path
+  list(APPEND CMAKE_MODULE_PATH "${RAPIDS_CMAKE_MODULE_PATH}")
+else()
+  if(NOT EXISTS ${CMAKE_CURRENT_BINARY_DIR}/EXAMPLE_RAPIDS.cmake)
+    file(DOWNLOAD https://raw.githubusercontent.com/ROCm-DS/ROCmDS-CMake/release/rocmds-25.10/RAPIDS.cmake
+        ${CMAKE_CURRENT_BINARY_DIR}/EXAMPLE_RAPIDS.cmake)
+  endif()
+  include(${CMAKE_CURRENT_BINARY_DIR}/EXAMPLE_RAPIDS.cmake)
 endif()
-include(${CMAKE_CURRENT_BINARY_DIR}/EXAMPLE_RAPIDS.cmake)
+
 
 include(rapids-cmake)
 include(rapids-cpm)
