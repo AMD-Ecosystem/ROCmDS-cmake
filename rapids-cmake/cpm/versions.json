@@ -54,7 +54,7 @@
       "git_tag" : "amd-integration"
     },
     "hipmm" : {
-      "version" : "4.0.0",
+      "version" : "5.0.0",
       "git_url" : "https://github.com/${rapids-cmake-rocm-ds-org}/hipMM",
       "git_tag" : "amd-integration",
       "source_subdir": "cpp"
@@ -87,7 +87,7 @@
       "git_shallow": true
     },
     "rocmds_logger": {
-      "version": "1.0.0",
+      "version": "2.0.0",
       "git_shallow": false,
       "git_url": "https://github.com/${rapids-cmake-rocm-ds-org}/ROCmDS-Logger",
       "git_tag": "amd-integration"
