@@ -319,7 +319,7 @@ function(rapids_cpm_hipccl)
     set(_hipccl_local_packages_only ON)
   endif()
 
-  if(_hipccl_download_all AND NOT _hipccl_local_packages_only)
+  if(_hipccl_download_all AND NOT _hipccl_local_packages_only AND NOT TARGET hipCCL::hipCCL)
     message(STATUS "CPM_DOWNLOAD_ALL is set -- skipping find_package(hipCCL) and creating package from source")
     _rapids_cpm_hipccl_create_package(${cccl_version} ${_RAPIDS_UNPARSED_ARGUMENTS})
   else()
