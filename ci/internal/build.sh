@@ -29,11 +29,15 @@
 # Required environment variables:
 #   SRC_DIR              Parent directory of the project checkout.
 #   BUILD_DIR            Scratch directory for the build tree.
+#   INSTALL_DIR          Prefix the packages are built for.
 #   BUILD_ARTIFACTS_DIR  Destination for the packages.
 #
 # Optional environment variables:
 #   PROJECT_ID                    Checkout directory name under SRC_DIR
 #                                 (default: rocmds_cmake).
+#   CMAKE_INSTALL_PREFIX          Install prefix, overriding INSTALL_DIR.
+#   CPACK_PACKAGING_INSTALL_PREFIX  Prefix baked into the packages. Defaults to
+#                                 the install prefix.
 #   ROCMDS_CMAKE_CPACK_GENERATORS Semicolon separated CPack generator list.
 #                                 Defaults to the generators whose backend is
 #                                 present (RPM and/or DEB).
@@ -42,9 +46,12 @@ set -xeu
 
 : "${SRC_DIR:?SRC_DIR must be set}"
 : "${BUILD_DIR:?BUILD_DIR must be set}"
+: "${INSTALL_DIR:?INSTALL_DIR must be set}"
 : "${BUILD_ARTIFACTS_DIR:?BUILD_ARTIFACTS_DIR must be set}"
 
 PROJECT_ID="${PROJECT_ID:-rocmds_cmake}"
+install_prefix="${CMAKE_INSTALL_PREFIX:-${INSTALL_DIR}}"
+package_prefix="${CPACK_PACKAGING_INSTALL_PREFIX:-${install_prefix}}"
 
 #### packaging backends
 
@@ -80,6 +87,8 @@ mkdir -p "${BUILD_ARTIFACTS_DIR}"
 
 cmake -S "${build_src_dir}" -B "${build_build_dir}" \
   -D RAPIDS_CMAKE_ONLY_CREATE_PACKAGE=ON \
+  -D "CMAKE_INSTALL_PREFIX=${install_prefix}" \
+  -D "CPACK_PACKAGING_INSTALL_PREFIX=${package_prefix}" \
   -D "CPACK_OUTPUT_FILE_PREFIX=${BUILD_ARTIFACTS_DIR}"
 
 # This project has no build step; the packages come straight from the
