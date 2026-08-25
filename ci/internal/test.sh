@@ -29,8 +29,11 @@
 #   SRC_DIR  Parent directory of the project checkout.
 #
 # Optional environment variables:
-#   PROJECT_ID  Checkout directory name (default: rocmds_cmake).
-#   ROCM_PATH   Added to CMAKE_PREFIX_PATH.
+#   PROJECT_ID     Checkout directory name (default: rocmds_cmake).
+#   ROCM_PATH      Added to CMAKE_PREFIX_PATH.
+#   CMAKE_VERSION  Version of the cmake package to install into a scratch venv
+#                  that supplies cmake and cpack. Unset means whatever cmake is
+#                  on PATH.
 
 set -xeu
 
@@ -44,8 +47,21 @@ os_id=$(. /etc/os-release && echo "${ID}")
 os_id_like=$(. /etc/os-release && echo "${ID_LIKE}")
 
 build_dir=$(mktemp -d)
+cmake_venv_dir=$(mktemp -d)
 
 cp -av "${SRC_DIR}/${PROJECT_ID}/." "${build_dir}/"
+
+# cmake and cpack come from this venv. It sits outside build_dir so it cannot
+# end up in the package the tests build there.
+if [ -n "${CMAKE_VERSION:-}" ]; then
+  python3 --version
+  python3 -m venv "${cmake_venv_dir}/_venv"
+  # shellcheck disable=SC1091
+  . "${cmake_venv_dir}/_venv/bin/activate"
+  pip3 install --upgrade pip
+  pip3 install "cmake==${CMAKE_VERSION}"
+fi
+cmake --version && cpack --version && ctest --version
 
 function package_format() {
   if [[ "${os_id_like}" == *"debian"* ]]; then
@@ -179,6 +195,6 @@ run_hip_amd_tests
 run_example_hip
 
 # clean up
-rm -r "${build_dir}"
+rm -r "${build_dir}" "${cmake_venv_dir}"
 
 echo "OK"

@@ -41,6 +41,10 @@
 #   ROCMDS_CMAKE_CPACK_GENERATORS Semicolon separated CPack generator list.
 #                                 Defaults to the generators whose backend is
 #                                 present (RPM and/or DEB).
+#   CMAKE_VERSION                 Version of the cmake package to install into
+#                                 the venv under BUILD_DIR that supplies cmake,
+#                                 cpack and ctest. Unset means whatever cmake is
+#                                 on PATH.
 
 set -xeu
 
@@ -84,6 +88,17 @@ mkdir -p "${BUILD_DIR}"
 cp -R "${src_dir}" "${build_src_dir}"
 
 mkdir -p "${BUILD_ARTIFACTS_DIR}"
+
+# cmake, cpack and ctest come from this venv.
+if [ -n "${CMAKE_VERSION:-}" ]; then
+  python3 --version
+  python3 -m venv "${build_src_dir}/_venv"
+  # shellcheck disable=SC1091
+  . "${build_src_dir}/_venv/bin/activate"
+  pip3 install --upgrade pip
+  pip3 install "cmake==${CMAKE_VERSION}"
+fi
+cmake --version && cpack --version && ctest --version
 
 cmake -S "${build_src_dir}" -B "${build_build_dir}" \
   -D RAPIDS_CMAKE_ONLY_CREATE_PACKAGE=ON \
