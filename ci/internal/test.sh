@@ -26,20 +26,25 @@
 # both an installed package and a downloaded RAPIDS.cmake.
 #
 # Required environment variables:
-#   SRC_DIR  Parent directory of the project checkout.
+#   SRC_DIR      Parent directory of the project checkout.
+#   INSTALL_DIR  Prefix the package under test is built for, matching the one
+#                the build was configured with.
 #
 # Optional environment variables:
-#   PROJECT_ID     Checkout directory name (default: rocmds_cmake).
-#   ROCM_PATH      Added to CMAKE_PREFIX_PATH.
-#   CMAKE_VERSION  Version of the cmake package to install into a scratch venv
-#                  that supplies cmake and cpack. Unset means whatever cmake is
-#                  on PATH.
+#   PROJECT_ID            Checkout directory name (default: rocmds_cmake).
+#   CMAKE_INSTALL_PREFIX  Install prefix, overriding INSTALL_DIR.
+#   ROCM_PATH             Added to CMAKE_PREFIX_PATH.
+#   CMAKE_VERSION         Version of the cmake package to install into a scratch
+#                         venv that supplies cmake and cpack. Unset means
+#                         whatever cmake is on PATH.
 
 set -xeu
 
 : "${SRC_DIR:?SRC_DIR must be set}"
+: "${INSTALL_DIR:?INSTALL_DIR must be set}"
 
 PROJECT_ID="${PROJECT_ID:-rocmds_cmake}"
+install_prefix="${CMAKE_INSTALL_PREFIX:-${INSTALL_DIR}}"
 
 printenv
 
@@ -82,7 +87,8 @@ function create_and_install_package() {
   rm -rf build_pkg
   mkdir build_pkg
   cd build_pkg || exit 1
-  cmake -D RAPIDS_CMAKE_ONLY_CREATE_PACKAGE=ON ..
+  cmake -D RAPIDS_CMAKE_ONLY_CREATE_PACKAGE=ON \
+        -D "CMAKE_INSTALL_PREFIX=${install_prefix}" ..
   cpack -G "${pkg_fmt}"
   if [[ "${pkg_fmt}" == "DEB" ]]; then
     apt install -y ./dist/rocmds-cmake-dev*.deb
@@ -119,7 +125,7 @@ function run_example_hip() {
 
 function run_example_from_module() {
   echo "example-from-module"
-  export RAPIDS_CMAKE_MODULE_PATH=/opt/rocm-ds/share/cmake/rocmds-cmake/modules
+  export RAPIDS_CMAKE_MODULE_PATH="${install_prefix}/share/cmake/rocmds-cmake/modules"
   cd "${build_dir}/example-from-module" || exit 1
   rm -rf build
   mkdir build
