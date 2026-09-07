@@ -136,6 +136,7 @@ function(rapids_cpm_rocthrust)
   # endif()
 
   rapids_cpm_find(rocthrust ${version} ${find_args}
+                  GLOBAL_TARGETS roc::rocthrust
                   CPM_ARGS ${cpm_find_info}
                     OPTIONS "DOWNLOAD_ROCPRIM ON")
 

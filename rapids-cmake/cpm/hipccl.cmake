@@ -112,8 +112,12 @@ macro(_rapids_cpm_hipccl_create_package version)
   rapids_cpm_libhipcxx(BUILD_EXPORT_SET hipccl-exports INSTALL_EXPORT_SET hipccl-exports ${ARGN})
 
   # TODO(HIP/AMD): it would be good to configure hipcub with rapids-cmake, too.
-  find_package(rocprim REQUIRED)
-  find_package(hipcub REQUIRED)
+  #
+  # note: CMake only permits promoting an imported target to global scope from the directory that
+  # created it, so the `GLOBAL_TARGETS` of the generated hipccl package have to be promoted here.
+  include("${rapids-cmake-dir}/find/package.cmake")
+  rapids_find_package(rocprim REQUIRED GLOBAL_TARGETS roc::rocprim_hip)
+  rapids_find_package(hipcub REQUIRED GLOBAL_TARGETS hip::hipcub)
 
   # libcudacxx
   add_library(libcudacxx_libcudacxx INTERFACE)
