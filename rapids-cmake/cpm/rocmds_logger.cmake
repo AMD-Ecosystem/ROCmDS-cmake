@@ -85,7 +85,10 @@ function(rapids_cpm_rocmds_logger)
 endfunction()
 
 if (HIP_AS_CUDA)
-    function(rapids_cpm_rapids_logger)
+    # Has to be a macro: rapids_cpm_rocmds_logger propagates rapids_logger_SOURCE_DIR and
+    # friends via PARENT_SCOPE, and a function wrapper would consume them in its own scope
+    # instead of the caller's.
+    macro(rapids_cpm_rapids_logger)
         rapids_cpm_rocmds_logger(${ARGN})
-    endfunction()
+    endmacro()
 endif()
