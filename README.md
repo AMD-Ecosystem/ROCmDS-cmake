@@ -23,11 +23,11 @@
 
 # ROCm-DS CMake
 
-<!-- **NOTE:** For the latest stable [README.md](https://github.com/ROCm-DS/ROCmDS-CMake/blob/release/rocmds-26.06/README.md) ensure you are on the default branch. -->
+<!-- **NOTE:** For the latest stable [README.md](https://github.com/AMD-Ecosystem/ROCmDS-cmake/blob/release/26.09/README.md) ensure you are on the default branch. -->
 
 ## Overview
 
-This is a collection of CMake modules that are useful for all ROCm-DS
+This is a collection of CMake modules that are useful for all AMD Data Science
 projects. By sharing the code in a single place it makes rolling out CMake
 fixes easier.
 
@@ -45,7 +45,7 @@ Content](https://cmake.org/cmake/help/latest/module/FetchContent.html) into your
 cmake_minimum_required(...)
 
 if(NOT EXISTS ${CMAKE_CURRENT_BINARY_DIR}/<PROJECT>_RAPIDS.cmake)
-  file(DOWNLOAD https://raw.githubusercontent.com/ROCm-DS/ROCmDS-CMake/release/rocmds-26.06/RAPIDS.cmake
+  file(DOWNLOAD https://raw.githubusercontent.com/AMD-Ecosystem/ROCmDS-cmake/release/26.09/RAPIDS.cmake
     ${CMAKE_CURRENT_BINARY_DIR}/<PROJECT>_RAPIDS.cmake)
 endif()
 include(${CMAKE_CURRENT_BINARY_DIR}/<PROJECT>_RAPIDS.cmake)
@@ -65,7 +65,7 @@ your project before the first `project` call. This allows us to offer features s
 
 ## Usage
 
-`rapids-cmake` provides a collection of useful CMake settings that any ROCm-DS project may use.
+`rapids-cmake` provides a collection of useful CMake settings that any AMD Data Science project may use.
 While they maybe common, we know that they aren't universal and might need to be composed in
 different ways.
 
@@ -174,7 +174,7 @@ At times projects or developers will need to verify ``rapids-cmake`` branches. T
   # To override the ROCm GitHub organization:
   set(rapids-cmake-rocm-org "<my_rocm_org>")
 
-  # To override the ROCm-DS GitHub organization:
+  # To override the AMD Data Science GitHub organization:
   set(rapids-cmake-rocm-ds-org "<my_rocm_ds_org>")
 
   # To set the version that is pulled (this must be set for RAPIDS.cmake to work):
@@ -221,4 +221,4 @@ A few notes:
 
 <!-- ## Contributing
 
-Review the [CONTRIBUTING.md](https://github.com/ROCm-DS/ROCmDS-CMake/blob/release/rocmds-26.06/CONTRIBUTING.md) file for information on how to contribute code and issues to the project. -->
+Review the [CONTRIBUTING.md](https://github.com/AMD-Ecosystem/ROCmDS-cmake/blob/release/26.09/CONTRIBUTING.md) file for information on how to contribute code and issues to the project. -->
