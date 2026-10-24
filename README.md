@@ -23,7 +23,7 @@
 
 # ROCm-DS CMake
 
-<!-- **NOTE:** For the latest stable [README.md](https://github.com/AMD-Ecosystem/ROCmDS-cmake/blob/release/26.10/README.md) ensure you are on the default branch. -->
+<!-- **NOTE:** For the latest stable [README.md](https://github.com/AMD-AIOSS/ROCmDS-cmake/blob/release/26.10/README.md) ensure you are on the default branch. -->
 
 ## Overview
 
@@ -45,7 +45,7 @@ Content](https://cmake.org/cmake/help/latest/module/FetchContent.html) into your
 cmake_minimum_required(...)
 
 if(NOT EXISTS ${CMAKE_CURRENT_BINARY_DIR}/<PROJECT>_RAPIDS.cmake)
-  file(DOWNLOAD https://raw.githubusercontent.com/AMD-Ecosystem/ROCmDS-cmake/release/26.10/RAPIDS.cmake
+  file(DOWNLOAD https://raw.githubusercontent.com/AMD-AIOSS/ROCmDS-cmake/release/26.10/RAPIDS.cmake
     ${CMAKE_CURRENT_BINARY_DIR}/<PROJECT>_RAPIDS.cmake)
 endif()
 include(${CMAKE_CURRENT_BINARY_DIR}/<PROJECT>_RAPIDS.cmake)
@@ -221,4 +221,4 @@ A few notes:
 
 <!-- ## Contributing
 
-Review the [CONTRIBUTING.md](https://github.com/AMD-Ecosystem/ROCmDS-cmake/blob/release/26.10/CONTRIBUTING.md) file for information on how to contribute code and issues to the project. -->
+Review the [CONTRIBUTING.md](https://github.com/AMD-AIOSS/ROCmDS-cmake/blob/release/26.10/CONTRIBUTING.md) file for information on how to contribute code and issues to the project. -->
