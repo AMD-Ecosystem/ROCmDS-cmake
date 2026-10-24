@@ -47,7 +47,7 @@ if(NOT "${RAPIDS_CMAKE_MODULE_PATH}" STREQUAL "")
   list(APPEND CMAKE_MODULE_PATH "${RAPIDS_CMAKE_MODULE_PATH}")
 else()
   if(NOT EXISTS ${CMAKE_CURRENT_BINARY_DIR}/EXAMPLE_RAPIDS.cmake)
-    file(DOWNLOAD https://raw.githubusercontent.com/AMD-AIOSS/ROCmDS-cmake/release/26.10/RAPIDS.cmake
+    file(DOWNLOAD https://raw.githubusercontent.com/AMD-Ecosystem/ROCmDS-cmake/release/26.10/RAPIDS.cmake
         ${CMAKE_CURRENT_BINARY_DIR}/EXAMPLE_RAPIDS.cmake)
   endif()
   include(${CMAKE_CURRENT_BINARY_DIR}/EXAMPLE_RAPIDS.cmake)
