@@ -89,7 +89,7 @@
     "rocmds_logger": {
       "version": "2.0.0",
       "git_shallow": false,
-      "git_url": "https://github.com/${rapids-cmake-rocm-ds-org}/ROCmDS-Logger",
+      "git_url": "https://github.com/${rapids-cmake-rocm-ds-org}/rocmds-logger",
       "git_tag": "release/26.10"
     }
   }
