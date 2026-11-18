@@ -210,7 +210,7 @@ function(rapids_cpm_package_details_internal package_name version_var url_var ta
       set(rapids-cmake-rocm-org "$ENV{RAPIDS_CMAKE_ROCM_ORG}")
       message(DEBUG "rapids_cpm_package_details_internal: RAPIDS_CMAKE_ROCM_ORG=${rapids-cmake-rocm-org}")
     else()
-      set(rapids-cmake-rocm-org AMD-Ecosystem)
+      set(rapids-cmake-rocm-org ROCm)
       message(DEBUG "rapids_cpm_package_details_internal: Using default RAPIDS_CMAKE_ROCM_ORG=${rapids-cmake-rocm-org}")
     endif()
   endif()
